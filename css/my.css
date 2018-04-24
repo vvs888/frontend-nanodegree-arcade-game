@@ -1,0 +1,13 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+
+.select-character {
+	margin: 5px 0 0;
+	color: blue;
+}
+
+.characters img {
+	margin-top: -20px;
+}
