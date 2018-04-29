@@ -1,3 +1,7 @@
+function getRandom(min, max) {
+    return Math.floor(Math.random() * (max - min) + min);
+}
+
 // Enemies our player must avoid
 var Enemy = function() {
     // Variables applied to each of our instances go here,
