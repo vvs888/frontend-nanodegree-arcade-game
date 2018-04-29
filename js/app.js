@@ -22,6 +22,7 @@ Enemy.prototype.update = function(dt) {
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
+
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
@@ -38,7 +39,9 @@ Player.prototype.update = function(dt) {
 }
 
 Player.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    const xInit = ctx.canvas.width / 2 - 50.5;
+    const yInit = ctx.canvas.height / 1.5;
+    ctx.drawImage(Resources.get(this.sprite), xInit, yInit);
 }
 
 Player.prototype.handleInput = function() {
@@ -60,7 +63,6 @@ const allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5, enemy6];
 
 // Place the player object in a variable called player
 const player = new Player();
-
 
 
 // This listens for key presses and sends the keys to your
