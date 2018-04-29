@@ -17,7 +17,7 @@ const Enemy = function() {
 let enemy1X = getRandom(0, ctx.canvas.width);
 const enemy1Y = ctx.canvas.height / 6 - 41.5;
 let speed1 = getRandom(25, 55);
-console.log(speed1);
+// console.log(speed1);
 
 Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
@@ -27,7 +27,7 @@ Enemy.prototype.update = function(dt) {
     if (enemy1X > ctx.canvas.width) {
         enemy1X = -101;
         speed1 = getRandom(25, 55);
-        console.log(speed1);
+        // console.log(speed1);
     }
 };
 
@@ -44,6 +44,8 @@ const Player = function() {
     this.sprite = 'images/char-boy.png';
 }
 
+
+
 Player.prototype.update = function(dt) {
 
 }
@@ -54,10 +56,15 @@ Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), xInit, yInit);
 }
 
-Player.prototype.handleInput = function() {
+Player.prototype.handleInput = function(evt) {
 
+    if (evt === 'up') {
+        console.log('Up!');
+
+    } else {
+        console.log(evt);
+    }
 }
-
 
 // Now instantiate your objects.
 const enemy1 = new Enemy();
