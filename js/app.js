@@ -14,15 +14,15 @@ const Enemy = function() {
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
-let enemy1X = getRandom(0, ctx.canvas.width);
+let enemy1X = getRandom(-ctx.canvas.width, ctx.canvas.width);
 const enemy1Y = ctx.canvas.height / 6 - 41.5;
 let speed1 = getRandom(25, 55);
 
-let enemy3X = getRandom(0, ctx.canvas.width);
+let enemy3X = getRandom(-ctx.canvas.width, ctx.canvas.width);
 const enemy3Y = ctx.canvas.height / 6 + 41.5;
 let speed3 = getRandom(25, 55);
 
-let enemy5X = getRandom(0, ctx.canvas.width);
+let enemy5X = getRandom(-ctx.canvas.width, ctx.canvas.width);
 const enemy5Y = ctx.canvas.height / 6 + 124.5;
 let speed5 = getRandom(25, 55);
 
@@ -32,19 +32,22 @@ Enemy.prototype.update = function(dt) {
     // all computers.
     enemy1X += speed1 * dt;
     if (enemy1X > ctx.canvas.width) {
-        enemy1X = -101;
+        enemy1X = getRandom(-ctx.canvas.width, -101);
+        console.log(enemy1X);
         speed1 = getRandom(25, 55);
     }
 
     enemy3X += speed3 * dt;
     if (enemy3X > ctx.canvas.width) {
-        enemy3X = -101;
+        enemy3X = getRandom(-ctx.canvas.width, -101);
+        console.log(enemy3X);
         speed3 = getRandom(25, 55);
     }
 
     enemy5X += speed5 * dt;
     if (enemy5X > ctx.canvas.width) {
-        enemy5X = -101;
+        enemy5X = getRandom(-ctx.canvas.width, -101);
+        console.log(enemy5X);
         speed5 = getRandom(25, 55);
     }
 };
@@ -63,6 +66,7 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 const Player = function() {
+
     this.sprite = 'images/char-boy.png';
 }
 
