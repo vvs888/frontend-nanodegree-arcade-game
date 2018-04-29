@@ -54,6 +54,8 @@ const enemy4 = new Enemy();
 const enemy5 = new Enemy();
 const enemy6 = new Enemy();
 
+const allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5, enemy6];
+
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 
