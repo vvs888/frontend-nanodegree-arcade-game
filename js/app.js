@@ -3,7 +3,7 @@ function getRandom(min, max) {
 }
 
 // Enemies our player must avoid
-var Enemy = function() {
+const Enemy = function() {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
@@ -14,16 +14,26 @@ var Enemy = function() {
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
+let enemy1X = getRandom(0, ctx.canvas.width);
+const enemy1Y = ctx.canvas.height / 6 - 41.5;
+let speed1 = getRandom(25, 55);
+console.log(speed1);
+
 Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+    enemy1X += speed1 * dt;
+    if (enemy1X > ctx.canvas.width) {
+        enemy1X = -101;
+        speed1 = getRandom(25, 55);
+        console.log(speed1);
+    }
 };
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
-
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    ctx.drawImage(Resources.get(this.sprite), enemy1X, enemy1Y);
 };
 
 
