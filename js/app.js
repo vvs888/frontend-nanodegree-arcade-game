@@ -14,51 +14,42 @@ const Enemy = function() {
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
-let enemy1X = getRandom(-ctx.canvas.width, ctx.canvas.width);
-const enemy1Y = ctx.canvas.height / 6 - 41.5;
-let speed1 = getRandom(25, 55);
-
-let enemy3X = getRandom(-ctx.canvas.width, ctx.canvas.width);
-const enemy3Y = ctx.canvas.height / 6 + 41.5;
-let speed3 = getRandom(25, 55);
-
-let enemy5X = getRandom(-ctx.canvas.width, ctx.canvas.width);
-const enemy5Y = ctx.canvas.height / 6 + 124.5;
-let speed5 = getRandom(25, 55);
-
 Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    enemy1X += speed1 * dt;
-    if (enemy1X > ctx.canvas.width) {
-        enemy1X = getRandom(-ctx.canvas.width, -101);
-        console.log(enemy1X);
-        speed1 = getRandom(25, 55);
+    enemy1.x += enemy1.speed * dt;
+    // console.log(enemy1.x);
+    if (enemy1.x > ctx.canvas.width) {
+        enemy1.x = getRandom(-ctx.canvas.width, -101);
+        enemy1.speed = getRandom(25, 55);
     }
 
-    enemy3X += speed3 * dt;
-    if (enemy3X > ctx.canvas.width) {
-        enemy3X = getRandom(-ctx.canvas.width, -101);
-        console.log(enemy3X);
-        speed3 = getRandom(25, 55);
+    enemy3.x += enemy3.speed * dt;
+    if (enemy3.x > ctx.canvas.width) {
+        enemy3.x = getRandom(-ctx.canvas.width, -101);
+        // console.log(enemy3X);
+        enemy3.speed = getRandom(25, 55);
     }
 
-    enemy5X += speed5 * dt;
-    if (enemy5X > ctx.canvas.width) {
-        enemy5X = getRandom(-ctx.canvas.width, -101);
-        console.log(enemy5X);
-        speed5 = getRandom(25, 55);
+    enemy5.x += enemy5.speed * dt;
+    // console.log(enemy5CurrentX);
+    if (enemy5.x > ctx.canvas.width) {
+        enemy5.x = getRandom(-ctx.canvas.width, -101);
+        // console.log(enemy5X);
+        enemy5.speed = getRandom(25, 55);
+        // console.log(enemy5.speed);
     }
 };
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), enemy1X, enemy1Y);
 
-    ctx.drawImage(Resources.get(this.sprite), enemy3X, enemy3Y);
+    ctx.drawImage(Resources.get(this.sprite), enemy1.x, enemy1.y);
 
-    ctx.drawImage(Resources.get(this.sprite), enemy5X, enemy5Y);
+    ctx.drawImage(Resources.get(this.sprite), enemy3.x, enemy3.y);
+
+    ctx.drawImage(Resources.get(this.sprite), enemy5.x, enemy5.y);
 };
 
 
@@ -70,28 +61,65 @@ const Player = function() {
     this.sprite = 'images/char-boy.png';
 }
 
-const xInit = ctx.canvas.width / 2 - 50.5;
-const yInit = ctx.canvas.height / 2 + 100;
-
 Player.prototype.update = function() {
 
 }
 
 Player.prototype.render = function() {
 
-    ctx.drawImage(Resources.get(this.sprite), xInit, yInit);
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
 
 Player.prototype.handleInput = function(evt) {
 
+    if (evt === 'up') {
+        this.y -= this.yMove;
+        if (this.y === -12) {
+            this.y = 71;
+        }
+        console.log(this.y);
+    } else if (evt === 'right') {
+        this.x += this.xMove;
+        if (this.x === 505) {
+            this.x = 404;
+        }
+        console.log(this.x);
+    } else if (evt === 'down') {
+        this.y += this.yMove;
+        if (this.y === 486) {
+            this.y = 403;
+        }
+        console.log(this.y);
+    } else if (evt === 'left') {
+        this.x -= this.xMove;
+        if (this.x === -101) {
+            this.x = 0;
+        }
+        console.log(this.x);
+    }
 }
 
 // Now instantiate your objects.
 const enemy1 = new Enemy();
+enemy1.x = getRandom(-ctx.canvas.width, ctx.canvas.width);
+enemy1.y = ctx.canvas.height / 6 - 41.5;
+enemy1.speed = getRandom(25, 55);
+
 const enemy2 = new Enemy();
+
 const enemy3 = new Enemy();
+enemy3.x = getRandom(-ctx.canvas.width, ctx.canvas.width);
+enemy3.y = ctx.canvas.height / 6 + 41.5;
+enemy3.speed = getRandom(25, 55);
+
 const enemy4 = new Enemy();
+
 const enemy5 = new Enemy();
+enemy5.x = getRandom(-ctx.canvas.width, ctx.canvas.width);
+enemy5.y = ctx.canvas.height / 6 + 124.5;
+enemy5.speed = getRandom(25, 55);
+// console.log(enemy5.speed);
+
 const enemy6 = new Enemy();
 
 // Place all enemy objects in an array called allEnemies
@@ -100,6 +128,10 @@ const allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5, enemy6];
 
 // Place the player object in a variable called player
 const player = new Player();
+player.x = ctx.canvas.width / 2 - 50.5;
+player.y = ctx.canvas.height / 2 + 100;
+player.xMove = 101;
+player.yMove = 83;
 
 
 // This listens for key presses and sends the keys to your
