@@ -74,8 +74,8 @@ Player.prototype.handleInput = function(evt) {
 
     if (evt === 'up') {
         this.y -= this.yMove;
-        if (this.y === -12) {
-            this.y = 71;
+        if (this.y === -29) {
+            this.y = 54;
         }
         console.log(this.y);
     } else if (evt === 'right') {
@@ -86,8 +86,8 @@ Player.prototype.handleInput = function(evt) {
         console.log(this.x);
     } else if (evt === 'down') {
         this.y += this.yMove;
-        if (this.y === 486) {
-            this.y = 403;
+        if (this.y === 469) {
+            this.y = 386;
         }
         console.log(this.y);
     } else if (evt === 'left') {
@@ -129,7 +129,7 @@ const allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5, enemy6];
 // Place the player object in a variable called player
 const player = new Player();
 player.x = ctx.canvas.width / 2 - 50.5;
-player.y = ctx.canvas.height / 2 + 100;
+player.y = ctx.canvas.height / 2 + 83;
 player.xMove = 101;
 player.yMove = 83;
 
