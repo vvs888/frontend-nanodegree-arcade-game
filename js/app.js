@@ -79,6 +79,14 @@ const Player = function() {
     this.yMove = 83;
 }
 
+//Player can choose character
+const players = document.querySelector('.characters');
+players.addEventListener('click', function(evt) {
+    if (evt.target.nodeName.toLowerCase() === 'img') {
+        player.sprite = evt.target.getAttribute('src');
+    }
+});
+
 Player.prototype.update = function() {
 
 }
@@ -139,7 +147,6 @@ const allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5, enemy6];
 
 // Place the player object in a variable called player
 const player = new Player();
-
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
