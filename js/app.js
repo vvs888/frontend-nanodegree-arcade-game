@@ -23,7 +23,7 @@ Enemy.prototype.update = function(dt) {
     // all computers.
     enemy1.x += enemy1.speed * dt;
     let enemy1currentX = Math.floor(enemy1.x);
-    if (enemy1currentX === player.currentX && enemy1.y === player.currentY) {
+    if (enemy1currentX + 50.5 > player.currentX && player.currentX + 50.5 > enemy1currentX && player.currentY < enemy1.y + 40 && player.currentY + 40 > enemy1.y) {
         player.currentY = player.y;
         player.currentX = player.x
     }
@@ -34,7 +34,7 @@ Enemy.prototype.update = function(dt) {
 
     enemy3.x += enemy3.speed * dt;
     let enemy3currentX = Math.floor(enemy3.x);
-    if (enemy3currentX === player.currentX && enemy3.y === player.currentY) {
+    if (enemy3currentX + 50.5 > player.currentX && player.currentX + 50.5 > enemy3currentX && player.currentY < enemy3.y + 40 && player.currentY + 40 > enemy3.y) {
         player.currentY = player.y;
         player.currentX = player.x
     }
@@ -45,7 +45,7 @@ Enemy.prototype.update = function(dt) {
 
     enemy5.x += enemy5.speed * dt;
     let enemy5currentX = Math.floor(enemy5.x);
-    if (enemy5currentX === player.currentX && enemy5.y === player.currentY) {
+    if (enemy5currentX + 50.5 > player.currentX && player.currentX + 50.5 > enemy5currentX && player.currentY < enemy5.y + 40 && player.currentY + 40 > enemy5.y) {
         player.currentY = player.y;
         player.currentX = player.x
     }
@@ -101,8 +101,14 @@ Player.prototype.handleInput = function(evt) {
 
     if (evt === 'up') {
         this.currentY -= this.yMove;
-        if (this.currentY === -29) {
-            this.currentY = 54;
+        if (this.currentY < 0) {
+                setTimeout(function() {
+                player.currentX = player.x;
+                player.currentY = player.y;
+                }, 500);
+            }
+        if (this.currentY === -112) {
+            this.currentY = -29;
         }
         console.log(this.currentY);
     } else if (evt === 'right') {
