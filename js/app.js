@@ -69,21 +69,19 @@ Enemy.prototype.render = function() {
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
-const Player = function() {
+const Player = function(x, y, xMove, yMove) {
 
     this.sprite = 'images/char-boy.png';
-    this.x = ctx.canvas.width / 2 - 50.5; // initial player's horizontal position
-    this.y = ctx.canvas.height / 2 + 83; // initial player's vertical position
-    this.currentX = this.x; // current player's horizontal position
-    this.currentY = this.y; // current player's vetical position
-    this.xMove = 101; // the value for player's move by horizontal
-    this.yMove = 83; // the value for player's move by vertical
+    this.x = x;
+    this.y = y;
+    this.xMove = xMove;
+    this.yMove = yMove;
 }
 
 //Player can choose character
 const players = document.querySelector('.characters');
 players.addEventListener('click', function(evt) {
-    if (evt.target.nodeName.toLowerCase() === 'img') {
+    if (evt.target.nodeName.toLowerCase() === 'img' && player.x === player.initX && player.y === player.initY) {
         player.sprite = evt.target.getAttribute('src');
     }
 });
@@ -94,45 +92,45 @@ Player.prototype.update = function() {
 
 Player.prototype.render = function() {
 
-    ctx.drawImage(Resources.get(this.sprite), this.currentX, this.currentY);
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
 
 Player.prototype.handleInput = function(evt) {
 
     if (evt === 'up') {
-        this.currentY -= this.yMove;
-        if (this.currentY < 0) {
+        this.y -= this.yMove;
+        if (this.y < 0) {
                 setTimeout(function() {
-                player.currentX = player.x;
-                player.currentY = player.y;
+                player.x = player.initX;
+                player.y = player.initY;
                 }, 500);
             }
-        // prevent Player's move off screen
-        if (this.currentY < 0) {
-            this.currentY = -29;
+        // preventing the player from moving outside the screen
+        if (this.y < 0 - this.yMove) {
+            this.y += this.yMove;
         }
-        console.log(this.currentY);
+        console.log(this.y);
     } else if (evt === 'right') {
-        this.currentX += this.xMove;
-        // prevent Player's move off screen
-        if (this.currentX === ctx.canvas.width) {
-            this.currentX = 404;
+        this.x += this.xMove;
+        // preventing the player from moving outside the screen
+        if (this.x === ctx.canvas.width) {
+            this.x -= this.xMove;
         }
-        console.log(this.currentX);
+        console.log(this.x);
     } else if (evt === 'down') {
-        this.currentY += this.yMove;
-        // prevent Player's move off screen
-        if (this.currentY > this.y) {
-            this.currentY = this.y;
+        this.y += this.yMove;
+        // preventing the player from moving outside the screen
+        if (this.y > this.initY) {
+            this.y = this.initY;
         }
-        console.log(this.currentY);
+        console.log(this.y);
     } else if (evt === 'left') {
-        this.currentX -= this.xMove;
-        // prevent Player's move off screen
-        if (this.currentX < 0) {
-            this.currentX = 0;
+        this.x -= this.xMove;
+        // preventing the player from moving outside the screen
+        if (this.x < 0) {
+            this.x = 0;
         }
-        console.log(this.currentX);
+        console.log(this.x);
     }
 }
 
@@ -157,7 +155,9 @@ const allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5, enemy6];
 
 
 // Place the player object in a variable called player
-const player = new Player();
+const player = new Player(ctx.canvas.width / 2 - 50.5, ctx.canvas.height / 2 + 83, 101, 83);
+Player.prototype.initX = player.x;
+Player.prototype.initY = player.y;
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
