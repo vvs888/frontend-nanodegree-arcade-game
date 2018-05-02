@@ -107,25 +107,29 @@ Player.prototype.handleInput = function(evt) {
                 player.currentY = player.y;
                 }, 500);
             }
-        if (this.currentY === -112) {
+        // prevent Player's move off screen
+        if (this.currentY < 0) {
             this.currentY = -29;
         }
         console.log(this.currentY);
     } else if (evt === 'right') {
         this.currentX += this.xMove;
-        if (this.currentX === 505) {
+        // prevent Player's move off screen
+        if (this.currentX === ctx.canvas.width) {
             this.currentX = 404;
         }
         console.log(this.currentX);
     } else if (evt === 'down') {
         this.currentY += this.yMove;
-        if (this.currentY === 469) {
-            this.currentY = 386;
+        // prevent Player's move off screen
+        if (this.currentY > this.y) {
+            this.currentY = this.y;
         }
         console.log(this.currentY);
     } else if (evt === 'left') {
         this.currentX -= this.xMove;
-        if (this.currentX === -101) {
+        // prevent Player's move off screen
+        if (this.currentX < 0) {
             this.currentX = 0;
         }
         console.log(this.currentX);
