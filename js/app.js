@@ -81,7 +81,8 @@ const Player = function(x, y, xMove, yMove) {
 //Player can choose character
 const players = document.querySelector('.characters');
 players.addEventListener('click', function(evt) {
-    if (evt.target.nodeName.toLowerCase() === 'img' && player.x === player.initX && player.y === player.initY) {
+    if (evt.target.nodeName.toLowerCase() === 'img' &&
+        player.x === player.initX && player.y === player.initY /* preventing changing a character after first move  */) {
         player.sprite = evt.target.getAttribute('src');
     }
 });
