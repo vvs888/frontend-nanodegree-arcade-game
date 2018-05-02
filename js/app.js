@@ -1,3 +1,4 @@
+//function for generating random number
 function getRandom(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
 }
@@ -71,12 +72,12 @@ Enemy.prototype.render = function() {
 const Player = function() {
 
     this.sprite = 'images/char-boy.png';
-    this.x = ctx.canvas.width / 2 - 50.5;
-    this.y = ctx.canvas.height / 2 + 83;
-    this.currentX = this.x;
-    this.currentY = this.y;
-    this.xMove = 101;
-    this.yMove = 83;
+    this.x = ctx.canvas.width / 2 - 50.5; // initial player's horizontal position
+    this.y = ctx.canvas.height / 2 + 83; // initial player's vertical position
+    this.currentX = this.x; // current player's horizontal position
+    this.currentY = this.y; // current player's vetical position
+    this.xMove = 101; // the value for player's move by horizontal
+    this.yMove = 83; // the value for player's move by vertical
 }
 
 //Player can choose character
