@@ -4,15 +4,18 @@ function getRandom(min, max) {
 }
 
 // Enemies our player must avoid
-const Enemy = function() {
+const Enemy = function(x, y, speed) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
-    this.x = getRandom(-ctx.canvas.width, ctx.canvas.width);
-    this.speed = getRandom(25, 65);
+    // this.x = getRandom(-ctx.canvas.width, ctx.canvas.width);
+    // this.speed = getRandom(25, 65);
+    this.x = x;
+    this.y = y;
+    this.speed = speed;
 };
 
 // Update the enemy's position, required method for game
@@ -22,10 +25,9 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
     enemy1.x += enemy1.speed * dt;
-    let enemy1currentX = Math.floor(enemy1.x);
-    if (enemy1currentX + 50.5 > player.currentX && player.currentX + 50.5 > enemy1currentX && player.currentY < enemy1.y + 40 && player.currentY + 40 > enemy1.y) {
-        player.currentY = player.y;
-        player.currentX = player.x
+    if (enemy1.x + 50.5 > player.x && player.x + 50.5 > enemy1.x && player.y < enemy1.y + 40 && player.y + 40 > enemy1.y) {
+        player.y = player.initY;
+        player.x = player.initX;
     }
     if (enemy1.x > ctx.canvas.width) {
         enemy1.x = getRandom(-ctx.canvas.width, -101);
@@ -33,10 +35,9 @@ Enemy.prototype.update = function(dt) {
     }
 
     enemy3.x += enemy3.speed * dt;
-    let enemy3currentX = Math.floor(enemy3.x);
-    if (enemy3currentX + 50.5 > player.currentX && player.currentX + 50.5 > enemy3currentX && player.currentY < enemy3.y + 40 && player.currentY + 40 > enemy3.y) {
-        player.currentY = player.y;
-        player.currentX = player.x
+    if (enemy3.x + 50.5 > player.x && player.x + 50.5 > enemy3.x && player.y < enemy3.y + 40 && player.y + 40 > enemy3.y) {
+        player.y = player.initY;
+        player.x = player.initX;
     }
     if (enemy3.x > ctx.canvas.width) {
         enemy3.x = getRandom(-ctx.canvas.width, -101);
@@ -44,10 +45,9 @@ Enemy.prototype.update = function(dt) {
     }
 
     enemy5.x += enemy5.speed * dt;
-    let enemy5currentX = Math.floor(enemy5.x);
-    if (enemy5currentX + 50.5 > player.currentX && player.currentX + 50.5 > enemy5currentX && player.currentY < enemy5.y + 40 && player.currentY + 40 > enemy5.y) {
-        player.currentY = player.y;
-        player.currentX = player.x
+    if (enemy5.x + 50.5 > player.x && player.x + 50.5 > enemy5.x) && player.y < enemy5.y + 40 && player.y + 40 > enemy5.y) {
+        player.y = player.initY;
+        player.x = player.initX;
     }
     if (enemy5.x > ctx.canvas.width) {
         enemy5.x = getRandom(-ctx.canvas.width, -101);
@@ -136,18 +136,15 @@ Player.prototype.handleInput = function(evt) {
 }
 
 // Now instantiate your objects.
-const enemy1 = new Enemy();
-enemy1.y = ctx.canvas.height / 6 - 47;
+const enemy1 = new Enemy(getRandom(-ctx.canvas.width, ctx.canvas.width), ctx.canvas.height / 6 - 47, getRandom(25, 65));
 
 const enemy2 = new Enemy();
 
-const enemy3 = new Enemy();
-enemy3.y = ctx.canvas.height / 6 + 36;
+const enemy3 = new Enemy(getRandom(-ctx.canvas.width, ctx.canvas.width), ctx.canvas.height / 6 + 36, getRandom(25, 65));
 
 const enemy4 = new Enemy();
 
-const enemy5 = new Enemy();
-enemy5.y = ctx.canvas.height / 6 + 119;
+const enemy5 = new Enemy(getRandom(-ctx.canvas.width, ctx.canvas.width), ctx.canvas.height / 6 + 119, getRandom(25, 65));
 
 const enemy6 = new Enemy();
 
