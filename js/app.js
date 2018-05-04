@@ -109,6 +109,35 @@ players.addEventListener('click', function(evt) {
 
 Player.prototype.update = function() {
 
+    if (this.y < 0) {
+        setTimeout(function() {
+            player.x = player.initX;
+            player.y = player.initY;
+            }, 500);
+        }
+        // preventing the player from moving outside the screen
+        if (this.y < 0 - this.yMove) {
+            this.y += this.yMove;
+        }
+        console.log(this.y);
+
+        // preventing the player from moving outside the screen
+        if (this.x === ctx.canvas.width) {
+            this.x -= this.xMove;
+        }
+        console.log(this.x);
+
+        // preventing the player from moving outside the screen
+        if (this.y > this.initY) {
+            this.y = this.initY;
+        }
+        console.log(this.y);
+
+        // preventing the player from moving outside the screen
+        if (this.x < 0) {
+            this.x = 0;
+        }
+        console.log(this.x);
 }
 
 Player.prototype.render = function() {
@@ -120,42 +149,16 @@ Player.prototype.handleInput = function(evt) {
 
     if (evt === 'up') {
         this.y -= this.yMove;
-        if (this.y < 0) {
-                setTimeout(function() {
-                player.x = player.initX;
-                player.y = player.initY;
-                }, 500);
-            }
-        // preventing the player from moving outside the screen
-        if (this.y < 0 - this.yMove) {
-            this.y += this.yMove;
-        }
-        console.log(this.y);
-        if (this.x === item5.x && this.y === item5.y) {
-        console.log('Hey!');
-        ctx.drawImage(Resources.get(this.sprite), null, null);
-    }
+
+
     } else if (evt === 'right') {
         this.x += this.xMove;
-        // preventing the player from moving outside the screen
-        if (this.x === ctx.canvas.width) {
-            this.x -= this.xMove;
-        }
-        console.log(this.x);
+
     } else if (evt === 'down') {
         this.y += this.yMove;
-        // preventing the player from moving outside the screen
-        if (this.y > this.initY) {
-            this.y = this.initY;
-        }
-        console.log(this.y);
+
     } else if (evt === 'left') {
         this.x -= this.xMove;
-        // preventing the player from moving outside the screen
-        if (this.x < 0) {
-            this.x = 0;
-        }
-        console.log(this.x);
     }
 }
 
