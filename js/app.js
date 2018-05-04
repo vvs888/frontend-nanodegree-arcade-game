@@ -97,14 +97,16 @@ const Player = function(x, y, xMove, yMove) {
     this.yMove = yMove;
 }
 
-//Player can choose character
-const players = document.querySelector('.characters');
-players.addEventListener('click', function(evt) {
-    if (evt.target.nodeName.toLowerCase() === 'img' &&
-        player.x === player.initX && player.y === player.initY /* preventing changing a character after first move  */) {
-        player.sprite = evt.target.getAttribute('src');
-    }
-});
+Player.prototype.selectHero = function() {
+    //Player can choose character
+    const players = document.querySelector('.characters');
+    players.addEventListener('click', function(evt) {
+        if (evt.target.nodeName.toLowerCase() === 'img' &&
+            player.x === player.initX && player.y === player.initY /* preventing changing a character after first move  */) {
+            player.sprite = evt.target.getAttribute('src');
+        }
+    });
+}
 
 Player.prototype.update = function() {
 
