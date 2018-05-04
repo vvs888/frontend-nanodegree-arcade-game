@@ -40,30 +40,21 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
     enemy1.x += enemy1.speed * dt;
-    if (enemy1.x + 50.5 > player.x && player.x + 50.5 > enemy1.x && player.y < enemy1.y + 40 && player.y + 40 > enemy1.y) {
-        player.y = player.initY;
-        player.x = player.initX;
-    }
+
     if (enemy1.x > ctx.canvas.width) {
         enemy1.x = getRandom(-ctx.canvas.width, -101);
         enemy1.speed = getRandom(25, 65);
     }
 
     enemy3.x += enemy3.speed * dt;
-    if (enemy3.x + 50.5 > player.x && player.x + 50.5 > enemy3.x && player.y < enemy3.y + 40 && player.y + 40 > enemy3.y) {
-        player.y = player.initY;
-        player.x = player.initX;
-    }
+
     if (enemy3.x > ctx.canvas.width) {
         enemy3.x = getRandom(-ctx.canvas.width, -101);
         enemy3.speed = getRandom(25, 65);
     }
 
     enemy5.x += enemy5.speed * dt;
-    if (enemy5.x + 50.5 > player.x && player.x + 50.5 > enemy5.x && player.y < enemy5.y + 40 && player.y + 40 > enemy5.y) {
-        player.y = player.initY;
-        player.x = player.initX;
-    }
+
     if (enemy5.x > ctx.canvas.width) {
         enemy5.x = getRandom(-ctx.canvas.width, -101);
         enemy5.speed = getRandom(25, 65);
@@ -74,6 +65,24 @@ Enemy.prototype.update = function(dt) {
 Enemy.prototype.render = function() {
 
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
+Enemy.prototype.checkCollisions = function() {
+    if (enemy1.x + 50.5 > player.x && player.x + 50.5 > enemy1.x && player.y < enemy1.y + 40 && player.y + 40 > enemy1.y) {
+        player.y = player.initY;
+        player.x = player.initX;
+    }
+
+    if (enemy3.x + 50.5 > player.x && player.x + 50.5 > enemy3.x && player.y < enemy3.y + 40 && player.y + 40 > enemy3.y) {
+        player.y = player.initY;
+        player.x = player.initX;
+    }
+
+    if (enemy5.x + 50.5 > player.x && player.x + 50.5 > enemy5.x && player.y < enemy5.y + 40 && player.y + 40 > enemy5.y) {
+        player.y = player.initY;
+        player.x = player.initX;
+    }
+
 };
 
 
@@ -122,6 +131,10 @@ Player.prototype.handleInput = function(evt) {
             this.y += this.yMove;
         }
         console.log(this.y);
+        if (this.x === item5.x && this.y === item5.y) {
+        console.log('Hey!');
+        ctx.drawImage(Resources.get(this.sprite), null, null);
+    }
     } else if (evt === 'right') {
         this.x += this.xMove;
         // preventing the player from moving outside the screen
