@@ -1,3 +1,18 @@
+// Shuffle function from http://stackoverflow.com/a/2450976
+function shuffle(array) {
+var currentIndex = array.length, temporaryValue, randomIndex;
+
+while (currentIndex !== 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+}
+
+return array;
+}
+
 //function for generating random number
 function getRandom(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
@@ -45,7 +60,7 @@ Enemy.prototype.update = function(dt) {
     }
 
     enemy5.x += enemy5.speed * dt;
-    if (enemy5.x + 50.5 > player.x && player.x + 50.5 > enemy5.x) && player.y < enemy5.y + 40 && player.y + 40 > enemy5.y) {
+    if (enemy5.x + 50.5 > player.x && player.x + 50.5 > enemy5.x && player.y < enemy5.y + 40 && player.y + 40 > enemy5.y) {
         player.y = player.initY;
         player.x = player.initX;
     }
@@ -57,10 +72,6 @@ Enemy.prototype.update = function(dt) {
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
-
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
@@ -135,6 +146,37 @@ Player.prototype.handleInput = function(evt) {
     }
 }
 
+const Item = function() {
+    this.x = this.randomX();
+    this.y = this.randomY();
+}
+
+Item.prototype.update = function() {
+
+}
+
+Item.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+}
+
+Item.prototype.randomX = function() {
+    let x = [];
+    for (i = 0; i < ctx.canvas.width; i+=101) {
+        x.push(i);
+    }
+    shuffle(x);
+    return Number(x[0]);
+}
+
+Item.prototype.randomY = function() {
+    let y = [];
+    for(let j = ctx.canvas.height / 6 - 47; j <= ctx.canvas.height / 6 + 119; j+=83){
+        y.push(j);
+    }
+    shuffle(y);
+    return Number(y[0]);
+}
+
 // Now instantiate your objects.
 const enemy1 = new Enemy(getRandom(-ctx.canvas.width, ctx.canvas.width), ctx.canvas.height / 6 - 47, getRandom(25, 65));
 
@@ -156,6 +198,26 @@ const allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5, enemy6];
 const player = new Player(ctx.canvas.width / 2 - 50.5, ctx.canvas.height / 2 + 83, 101, 83);
 Player.prototype.initX = player.x;
 Player.prototype.initY = player.y;
+
+const item1 = new Item();
+item1.sprite = 'images/Gem Blue.png';
+
+const item2 = new Item();
+item2.sprite = 'images/Gem Green.png';
+
+const item3 = new Item();
+item3.sprite = 'images/Gem Orange.png';
+
+const item4 = new Item();
+item4.sprite = 'images/Heart.png';
+
+const item5 = new Item();
+item5.sprite = 'images/Key.png';
+
+const item6 = new Item();
+item6.sprite = 'images/Star.png';
+
+const allItems = [item1, item2, item3, item4, item5, item6];
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
