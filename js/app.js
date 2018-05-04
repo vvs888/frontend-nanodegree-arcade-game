@@ -119,25 +119,21 @@ Player.prototype.update = function() {
         if (this.y < 0 - this.yMove) {
             this.y += this.yMove;
         }
-        console.log(this.y);
 
         // preventing the player from moving outside the screen
         if (this.x === ctx.canvas.width) {
             this.x -= this.xMove;
         }
-        console.log(this.x);
 
         // preventing the player from moving outside the screen
         if (this.y > this.initY) {
             this.y = this.initY;
         }
-        console.log(this.y);
 
         // preventing the player from moving outside the screen
         if (this.x < 0) {
             this.x = 0;
         }
-        console.log(this.x);
 }
 
 Player.prototype.render = function() {
