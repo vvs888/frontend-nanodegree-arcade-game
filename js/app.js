@@ -85,7 +85,6 @@ Enemy.prototype.checkCollisions = function() {
 
 };
 
-
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
@@ -146,7 +145,6 @@ Player.prototype.handleInput = function(evt) {
     if (evt === 'up') {
         this.y -= this.yMove;
 
-
     } else if (evt === 'right') {
         this.x += this.xMove;
 
@@ -158,13 +156,9 @@ Player.prototype.handleInput = function(evt) {
     }
 }
 
-const Item = function() {
+const Item = function(x, y) {
     this.x = this.randomX();
     this.y = this.randomY();
-}
-
-Item.prototype.update = function() {
-
 }
 
 Item.prototype.render = function() {
@@ -187,6 +181,13 @@ Item.prototype.randomY = function() {
     }
     shuffle(y);
     return Number(y[0]);
+}
+
+Item.prototype.checkCollisions = function() {
+    if (this.x === player.x && this.y === player.y) {
+        this.x = -101;
+        this.y = -171;
+    }
 }
 
 // Now instantiate your objects.
