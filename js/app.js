@@ -69,18 +69,32 @@ Enemy.prototype.checkCollisions = function() {
     if (enemy1.x + 50.5 > player.x && player.x + 50.5 > enemy1.x && player.y < enemy1.y + 40 && player.y + 40 > enemy1.y) {
         player.y = player.initY;
         player.x = player.initX;
+        // all items return on random positions after collision Enemy with Player
+        allItems.forEach(item => {
+            item.x = item.randomX();
+            item.y = item.randomY();
+        });
     }
 
     if (enemy3.x + 50.5 > player.x && player.x + 50.5 > enemy3.x && player.y < enemy3.y + 40 && player.y + 40 > enemy3.y) {
         player.y = player.initY;
         player.x = player.initX;
+        // all items return on random positions after collision Enemy with Player
+        allItems.forEach(item => {
+            item.x = item.randomX();
+            item.y = item.randomY();
+        });
     }
 
     if (enemy5.x + 50.5 > player.x && player.x + 50.5 > enemy5.x && player.y < enemy5.y + 40 && player.y + 40 > enemy5.y) {
         player.y = player.initY;
         player.x = player.initX;
+        // all items return on random positions after collision Enemy with Player
+        allItems.forEach(item => {
+            item.x = item.randomX();
+            item.y = item.randomY();
+        });
     }
-
 };
 
 // Now write your own player class
@@ -110,6 +124,7 @@ Player.prototype.update = function() {
 
     if (this.y < 0) {
         setTimeout(function() {
+            // if player reaches water, player returns to initial position
             player.x = player.initX;
             player.y = player.initY;
             }, 500);
