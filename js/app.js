@@ -158,7 +158,7 @@ Player.prototype.handleInput = function(evt) {
     }
 }
 
-const Item = function(x, y) {
+const Item = function() {
     this.x = this.randomX();
     this.y = this.randomY();
 }
@@ -167,6 +167,7 @@ Item.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
 
+//random x-position
 Item.prototype.randomX = function() {
     let x = [];
     for (i = 0; i < ctx.canvas.width; i+=101) {
@@ -176,6 +177,7 @@ Item.prototype.randomX = function() {
     return Number(x[0]);
 }
 
+// random y-position
 Item.prototype.randomY = function() {
     let y = [];
     for(let j = ctx.canvas.height / 6 - 47; j <= ctx.canvas.height / 6 + 119; j+=83){
@@ -186,9 +188,46 @@ Item.prototype.randomY = function() {
 }
 
 Item.prototype.checkCollisions = function() {
+
     if (this.x === player.x && this.y === player.y) {
-        this.x = -101;
-        this.y = -171;
+        this.x = getRandom(-ctx.canvas.width, -101);
+        this.y = getRandom(-ctx.canvas.height, -83);
+    }
+
+    // prevent 2 items occupy the same cell in same time
+    if (item1.x === item2.x && item1.y === item2.y ||
+        item1.x === item3.x && item1.y === item3.y ||
+        item1.x === item4.x && item1.y === item4.y ||
+        item1.x === item5.x && item1.y === item5.y ||
+        item1.x === item6.x && item1.y === item6.y) {
+        item1.x = this.randomX();
+        item1.y = this.randomY();
+    }
+
+    if (item2.x === item3.x && item2.y === item3.y ||
+        item2.x === item4.x && item2.y === item4.y ||
+        item2.x === item5.x && item2.y === item5.y ||
+        item2.x === item6.x && item2.y === item6.y) {
+        item2.x = this.randomX();
+        item2.y = this.randomY();
+    }
+
+    if (item3.x === item4.x && item3.y === item4.y ||
+        item3.x === item5.x && item3.y === item5.y ||
+        item3.x === item6.x && item3.y === item6.y) {
+        item3.x = this.randomX();
+        item3.y = this.randomY();
+    }
+
+    if (item4.x === item5.x && item4.y === item5.y ||
+        item4.x === item6.x && item4.y === item6.y) {
+        item4.x = this.randomX();
+        item4.y = this.randomY();
+    }
+
+    if (item5.x === item6.x && item5.y === item6.y) {
+        item5.x = this.randomX();
+        item5.y = this.randomY();
     }
 }
 
