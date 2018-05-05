@@ -200,8 +200,8 @@ Item.prototype.randomY = function() {
 Item.prototype.checkCollisions = function() {
 
     if (this.x === player.x && this.y === player.y) {
-        this.x = getRandom(-ctx.canvas.width, -101);
-        this.y = getRandom(-ctx.canvas.height, -83);
+        this.x = getRandom(-ctx.canvas.width, -player.xMove);
+        this.y = getRandom(-ctx.canvas.height, -player.yMove);
     }
 
     // prevent 2 items occupy the same cell in same time
@@ -239,6 +239,16 @@ Item.prototype.checkCollisions = function() {
         item5.x = this.randomX();
         item5.y = this.randomY();
     }
+
+    // if all items are collected and player reaches water all items return on desk in random order
+    allItems.forEach(item => {
+        if (item.x > -ctx.canvas.width && item.x < -player.xMove &&
+            item.y > -ctx.canvas.height && item.y < player.yMove &&
+            player.y < 0) {
+            item.x = item.randomX();
+            item.y = item.randomY();
+        }
+    });
 }
 
 // Now instantiate your objects.
