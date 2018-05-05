@@ -26,8 +26,6 @@ const Enemy = function(x, y, speed) {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
-    // this.x = getRandom(-ctx.canvas.width, ctx.canvas.width);
-    // this.speed = getRandom(25, 65);
     this.x = x;
     this.y = y;
     this.speed = speed;
@@ -102,7 +100,7 @@ Player.prototype.selectHero = function() {
     const players = document.querySelector('.characters');
     players.addEventListener('click', function(evt) {
         if (evt.target.nodeName.toLowerCase() === 'img' &&
-            player.x === player.initX && player.y === player.initY /* preventing changing a character after first move  */) {
+            player.x === player.initX && player.y === player.initY /* preventing changing a hero after changing hero's initial position */) {
             player.sprite = evt.target.getAttribute('src');
         }
     });
@@ -121,17 +119,14 @@ Player.prototype.update = function() {
             this.y += this.yMove;
         }
 
-        // preventing the player from moving outside the screen
         if (this.x === ctx.canvas.width) {
             this.x -= this.xMove;
         }
 
-        // preventing the player from moving outside the screen
         if (this.y > this.initY) {
             this.y = this.initY;
         }
 
-        // preventing the player from moving outside the screen
         if (this.x < 0) {
             this.x = 0;
         }
