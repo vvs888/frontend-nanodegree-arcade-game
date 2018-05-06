@@ -67,6 +67,10 @@ Enemy.prototype.checkCollisions = function() {
             });
 
             // Score resets
+            modal.e1.style.display = 'block';
+            modal.e2.style.display = 'block';
+            modal.header.style.color = 'red';
+            modal.header.textContent = 'You Loose! Try again.';
             modal.counter = 0;
             modal.score.textContent = `Your score: ${modal.counter}`;
             game.score.textContent = modal.score.textContent;
@@ -103,6 +107,8 @@ Player.prototype.update = function() {
 
         modal.e1.style.display = 'block';
         modal.e2.style.display = 'block';
+        modal.header.style.color = 'green';
+        modal.header.textContent = 'You Win!';
 
         setTimeout(function() {
             // if player reaches water, player returns to initial position
