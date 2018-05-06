@@ -172,7 +172,8 @@ Player.prototype.handleInput = function(evt) {
     }
 }
 
-const Item = function() {
+const Item = function(cost) {
+    this.cost = cost;
     this.x = this.randomX();
     this.y = this.randomY();
 }
@@ -277,22 +278,22 @@ const player = new Player(ctx.canvas.width / 2 - 50.5, ctx.canvas.height / 2 + 8
 Player.prototype.initX = player.x;
 Player.prototype.initY = player.y;
 
-const item1 = new Item();
+const item1 = new Item(200);
 item1.sprite = 'images/Gem Blue.png';
 
-const item2 = new Item();
+const item2 = new Item(300);
 item2.sprite = 'images/Gem Green.png';
 
-const item3 = new Item();
+const item3 = new Item(500);
 item3.sprite = 'images/Gem Orange.png';
 
-const item4 = new Item();
+const item4 = new Item(700);
 item4.sprite = 'images/Heart.png';
 
-const item5 = new Item();
+const item5 = new Item(100);
 item5.sprite = 'images/Key.png';
 
-const item6 = new Item();
+const item6 = new Item(1000);
 item6.sprite = 'images/Star.png';
 
 const allItems = [item1, item2, item3, item4, item5, item6];
@@ -311,8 +312,8 @@ document.addEventListener('keyup', function(e) {
 });
 
 const Modal = function() {
-
-this.score = Number(document.querySelector('.modalScore').textContent);
+this counter = 0;
+this.score = Number(document.querySelector('.modalScore');
 this.e1 = document.querySelector('.modal');
 this.e2 = document.querySelector('.modal-overlay');
 this.close = document.querySelector('#close');
