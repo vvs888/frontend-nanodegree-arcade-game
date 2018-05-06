@@ -123,6 +123,10 @@ Player.prototype.selectHero = function() {
 Player.prototype.update = function() {
 
     if (this.y < 0) {
+
+        modal.e1.style.display = 'block';
+        modal.e2.style.display = 'block';
+
         setTimeout(function() {
             // if player reaches water, player returns to initial position
             player.x = player.initX;
@@ -305,3 +309,17 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
+const Modal = function() {
+
+this.score = Number(document.querySelector('.modalScore').textContent);
+this.e1 = document.querySelector('.modal');
+this.e2 = document.querySelector('.modal-overlay');
+this.close = document.querySelector('#close');
+this.close.addEventListener('click', function() {
+        modal.e1.style.display = 'none';
+        modal.e2.style.display = 'none';
+    });
+};
+
+const modal = new Modal();
