@@ -53,47 +53,25 @@ Enemy.prototype.render = function() {
 };
 
 Enemy.prototype.checkCollisions = function() {
-    if (enemy1.x + 50.5 > player.x && player.x + 50.5 > enemy1.x && player.y < enemy1.y + 40 && player.y + 40 > enemy1.y) {
-        player.y = player.initY;
-        player.x = player.initX;
-        // all items return on random positions after collision Enemy with Player
-        allItems.forEach(item => {
-            item.x = item.randomX();
-            item.y = item.randomY();
-        });
-        // Score resets
-        modal.counter = 0;
-        modal.score.textContent = `Your score: ${modal.counter}`;
-        game.score.textContent = modal.score.textContent;
-    }
 
-    if (enemy3.x + 50.5 > player.x && player.x + 50.5 > enemy3.x && player.y < enemy3.y + 40 && player.y + 40 > enemy3.y) {
-        player.y = player.initY;
-        player.x = player.initX;
-        // all items return on random positions after collision Enemy with Player
-        allItems.forEach(item => {
-            item.x = item.randomX();
-            item.y = item.randomY();
-        });
-        // Score resets
-        modal.counter = 0;
-        modal.score.textContent = `Your score: ${modal.counter}`;
-        game.score.textContent = modal.score.textContent;
-    }
+    allEnemies.forEach(enemy => {
+        if (enemy.x + 50.5 > player.x && player.x + 50.5 > enemy.x && player.y < enemy.y + 40 && player.y + 40 > enemy.y) {
+            // player returns to initial position
+            player.y = player.initY;
+            player.x = player.initX;
 
-    if (enemy5.x + 50.5 > player.x && player.x + 50.5 > enemy5.x && player.y < enemy5.y + 40 && player.y + 40 > enemy5.y) {
-        player.y = player.initY;
-        player.x = player.initX;
-        // all items return on random positions after collision Enemy with Player
-        allItems.forEach(item => {
-            item.x = item.randomX();
-            item.y = item.randomY();
-        });
-        // Score resets
-        modal.counter = 0;
-        modal.score.textContent = `Your score: ${modal.counter}`;
-        game.score.textContent = modal.score.textContent;
-    }
+            // all items reset to random positions
+            allItems.forEach(item => {
+                item.x = item.randomX();
+                item.y = item.randomY();
+            });
+
+            // Score resets
+            modal.counter = 0;
+            modal.score.textContent = `Your score: ${modal.counter}`;
+            game.score.textContent = modal.score.textContent;
+        }
+    });
 };
 
 // Now write your own player class
