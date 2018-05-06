@@ -67,8 +67,7 @@ Enemy.prototype.checkCollisions = function() {
             });
 
             // Score resets
-            modal.e1.style.display = 'block';
-            modal.e2.style.display = 'block';
+            modal.isOpened();
             modal.header.style.color = 'red';
             modal.header.textContent = 'You Loose! Try again.';
             modal.counter = 0;
@@ -104,9 +103,7 @@ Player.prototype.selectHero = function() {
 Player.prototype.update = function() {
 
     if (this.y < 0) {
-
-        modal.e1.style.display = 'block';
-        modal.e2.style.display = 'block';
+        modal.isOpened();
         modal.header.style.color = 'green';
         modal.header.textContent = 'You Win!';
 
@@ -306,14 +303,23 @@ const Modal = function() {
     this.e2 = document.querySelector('.modal-overlay');
     this.close = document.querySelector('#close');
     this.close.addEventListener('click', function() {
-        modal.e1.style.display = 'none';
-        modal.e2.style.display = 'none';
+        modal.isClosed();
         // if modal is closed score resets
         modal.counter = 0;
         modal.score.textContent = `Your score: ${modal.counter}`;
         game.score.textContent = modal.score.textContent;
     });
 };
+
+Modal.prototype.isOpened = function() {
+    this.e1.style.display = 'block';
+    this.e2.style.display = 'block';
+}
+
+Modal.prototype.isClosed = function() {
+    this.e1.style.display = 'none';
+    this.e2.style.display = 'none';
+}
 
 const modal = new Modal();
 
