@@ -19,16 +19,16 @@ function getRandom(min, max) {
 }
 
 // Enemies our player must avoid
-const Enemy = function(x, y, speed) {
+const Enemy = function(y) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
-    this.x = x;
+    this.x = getRandom(-ctx.canvas.width, ctx.canvas.width);
     this.y = y;
-    this.speed = speed;
+    this.speed = getRandom(35, 100);
 };
 
 // Update the enemy's position, required method for game
@@ -258,17 +258,17 @@ Item.prototype.checkCollisions = function() {
 }
 
 // Now instantiate your objects.
-const enemy1 = new Enemy(getRandom(-ctx.canvas.width, ctx.canvas.width), ctx.canvas.height / 6 - 47, getRandom(25, 65));
+const enemy1 = new Enemy(ctx.canvas.height / 6 - 47);
 
-const enemy2 = new Enemy();
+const enemy2 = new Enemy(ctx.canvas.height / 6 - 47);
 
-const enemy3 = new Enemy(getRandom(-ctx.canvas.width, ctx.canvas.width), ctx.canvas.height / 6 + 36, getRandom(25, 65));
+const enemy3 = new Enemy(ctx.canvas.height / 6 + 36);
 
-const enemy4 = new Enemy();
+const enemy4 = new Enemy(ctx.canvas.height / 6 + 36);
 
-const enemy5 = new Enemy(getRandom(-ctx.canvas.width, ctx.canvas.width), ctx.canvas.height / 6 + 119, getRandom(25, 65));
+const enemy5 = new Enemy(ctx.canvas.height / 6 + 119);
 
-const enemy6 = new Enemy();
+const enemy6 = new Enemy(ctx.canvas.height / 6 + 119);
 
 // Place all enemy objects in an array called allEnemies
 const allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5, enemy6];
