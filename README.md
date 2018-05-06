@@ -1,6 +1,50 @@
-frontend-nanodegree-arcade-game
+Vlad's frontend-nanodegree-arcade-game
 ===============================
 
-Students should use this [rubric](https://review.udacity.com/#!/projects/2696458597/rubric) for self-checking their submission. Make sure the functions you write are **object-oriented** - either class functions (like Player and Enemy) or class prototype functions such as Enemy.prototype.checkCollisions, and that the keyword 'this' is used appropriately within your class and class prototype functions to refer to the object the function is called upon. Also be sure that the **readme.md** file is updated with your instructions on both how to 1. Run and 2. Play your arcade game.
+##### This project is forked from [**Udacity frontend-nanodegree-arcade-game**](https://github.com/udacity/frontend-nanodegree-arcade-game)
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+## Table of Contents
+
+* [Instructions](#instructions)
+
+* [Game's Screenshots](#screenshots)
+
+* [Authors](#authors)
+
+## Installing
+
+No installation required. You need only web browser.
+
+## Instructions
+
+##### The rules are simple:
+
+* The game starts by clicking on first card
+* Choose your hero
+* You can move a hero by pressing keyboard's buttons (up, right, down, left)
+* To win the game you need to reach water avoiding collision with enemies(beetles)
+* If you collided with an enemy the game and the game's score will reset, your hero will return to initial position
+* There are valuable items on the game's desk. You can collect them earning points to improve the score of the game
+
+## Game's screenshots
+
+##### Start of the game
+
+![screenshot1](img/1.jpg)
+
+##### Two cards are matched
+
+![screenshot2](img/2.jpg)
+
+##### Game over
+
+![screenshot3](img/3.jpg)
+
+##### All cards are opened
+
+![screenshot4](img/4.jpg)
+
+## Authors
+
+* **Richard Kalehoff** _- initial work -_ [richardkalehoff](https://github.com/richardkalehoff)
+* **Vlad Sivirin** _- some styles and some JavaScript code -_ [vvs888](https://github.com/vvs888)
