@@ -207,6 +207,7 @@ Item.prototype.checkCollisions = function() {
     if (this.x === player.x && this.y === player.y) {
         this.x = getRandom(-ctx.canvas.width, -player.xMove);
         this.y = getRandom(-ctx.canvas.height, -player.yMove);
+        modal.score.textContent = `Your score: ${modal.counter += this.cost}`;
     }
 
     // prevent 2 items occupy the same cell in same time
@@ -312,8 +313,8 @@ document.addEventListener('keyup', function(e) {
 });
 
 const Modal = function() {
-this counter = 0;
-this.score = Number(document.querySelector('.modalScore');
+this.counter = 0;
+this.score = document.querySelector('.modalScore');
 this.e1 = document.querySelector('.modal');
 this.e2 = document.querySelector('.modal-overlay');
 this.close = document.querySelector('#close');
