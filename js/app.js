@@ -352,6 +352,7 @@ Start.prototype.isStarted = function() {
     this.e.textContent = 'Stop';
     allEnemies.push(enemy1, enemy2, enemy3, enemy4, enemy5, enemy6);
     allItems.push(item1, item2, item3, item4, item5, item6);
+    modal.counter = 0;
     this.e = document.querySelector('.stopped');
     this.e.addEventListener('click', () => {
         this.isStoped();
@@ -364,6 +365,10 @@ Start.prototype.isStoped = function() {
     this.e.textContent = 'Start';
     allEnemies = [];
     allItems = [];
+    // reset score
+    modal.counter = 0;
+    game.score.textContent = `Your score: ${modal.counter}`;
+    modal.score.textContent = `Your score: ${modal.counter}`;
     this.e = document.querySelector('.started');
     this.e.addEventListener('click', () => {
         this.isStarted();
