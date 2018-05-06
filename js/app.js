@@ -340,16 +340,34 @@ const game = new Game();
 
 //start the game
 const Start = function() {
-    this.e = document.querySelector('.start > h3');
-    this.e.classList.toggle('started');
+    this.e = document.querySelector('.started');
     this.e.addEventListener('click', () => {
-        allEnemies.push(enemy1, enemy2, enemy3, enemy4, enemy5, enemy6);
-        allItems.push(item1, item2, item3, item4, item5, item6);
+        this.isStarted();
     });
 }
 
 Start.prototype.isStarted = function() {
+    this.e.classList.remove('started');
+    this.e.classList.add('stopped');
+    this.e.textContent = 'Stop';
+    allEnemies.push(enemy1, enemy2, enemy3, enemy4, enemy5, enemy6);
+    allItems.push(item1, item2, item3, item4, item5, item6);
+    this.e = document.querySelector('.stopped');
+    this.e.addEventListener('click', () => {
+        this.isStoped();
+    });
+}
 
+Start.prototype.isStoped = function() {
+    this.e.classList.add('started');
+    this.e.classList.remove('stopped');
+    this.e.textContent = 'Start';
+    allEnemies = [];
+    allItems = [];
+    this.e = document.querySelector('.started');
+    this.e.addEventListener('click', () => {
+        this.isStarted();
+    });
 }
 
 const start = new Start();
