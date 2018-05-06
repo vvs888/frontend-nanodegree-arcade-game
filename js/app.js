@@ -104,6 +104,7 @@ Player.prototype.update = function() {
 
     if (this.y < 0) {
         modal.isOpened();
+
         modal.header.style.color = 'green';
         modal.header.textContent = 'You Win!';
 
@@ -137,17 +138,17 @@ Player.prototype.render = function() {
 }
 
 Player.prototype.handleInput = function(evt) {
-
-    if (evt === 'up') {
+    /* if modal is opened player cannot move */
+    if (evt === 'up' && modal.body.classList.contains('closed')) {
         this.y -= this.yMove;
 
-    } else if (evt === 'right') {
+    } else if (evt === 'right' && modal.body.classList.contains('closed')) {
         this.x += this.xMove;
 
-    } else if (evt === 'down') {
+    } else if (evt === 'down' && modal.body.classList.contains('closed')) {
         this.y += this.yMove;
 
-    } else if (evt === 'left') {
+    } else if (evt === 'left' && modal.body.classList.contains('closed')) {
         this.x -= this.xMove;
     }
 }
@@ -296,6 +297,7 @@ document.addEventListener('keyup', function(e) {
 const Modal = function() {
 
     this.counter = 0;
+    this.body = document.querySelector('.modal');
     this.score = document.querySelector('.modalScore');
     this.score.textContent = `Your score: ${this.counter}`;
     this.header = document.querySelector('.modal-content h1');
@@ -312,11 +314,13 @@ const Modal = function() {
 };
 
 Modal.prototype.isOpened = function() {
+    this.body.classList.remove('closed');
     this.e1.style.display = 'block';
     this.e2.style.display = 'block';
 }
 
 Modal.prototype.isClosed = function() {
+    this.body.classList.add('closed');
     this.e1.style.display = 'none';
     this.e2.style.display = 'none';
 }
