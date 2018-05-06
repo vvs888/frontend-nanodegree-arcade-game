@@ -69,7 +69,7 @@ Enemy.prototype.checkCollisions = function() {
             // Score resets
             modal.isOpened();
             modal.header.style.color = 'red';
-            modal.header.textContent = 'You Loose! Try again.';
+            modal.header.textContent = 'You Loose! Try again';
             modal.counter = 0;
             modal.score.textContent = `Your score: ${modal.counter}`;
             game.score.textContent = modal.score.textContent;
@@ -132,8 +132,8 @@ Player.prototype.update = function() {
         }
 }
 
+// Draw the player
 Player.prototype.render = function() {
-
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
 
@@ -153,12 +153,14 @@ Player.prototype.handleInput = function(evt) {
     }
 }
 
+// Items to collect
 const Item = function(cost) {
     this.cost = cost;
     this.x = this.randomX();
     this.y = this.randomY();
 }
 
+// Draw items
 Item.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
@@ -253,7 +255,7 @@ const enemy5 = new Enemy(ctx.canvas.height / 6 + 119);
 const enemy6 = new Enemy(ctx.canvas.height / 6 + 119);
 
 // Place all enemy objects in an array called allEnemies
-const allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5, enemy6];
+let allEnemies = [];
 
 
 // Place the player object in a variable called player
@@ -279,7 +281,8 @@ item5.sprite = 'images/Key.png';
 const item6 = new Item(1000);
 item6.sprite = 'images/Star.png';
 
-const allItems = [item1, item2, item3, item4, item5, item6];
+
+let allItems = [];
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
@@ -294,8 +297,8 @@ document.addEventListener('keyup', function(e) {
     player.handleInput(allowedKeys[e.keyCode]);
 });
 
+// Modal window to display the Game's status
 const Modal = function() {
-
     this.counter = 0;
     this.body = document.querySelector('.modal');
     this.score = document.querySelector('.modalScore');
@@ -327,9 +330,26 @@ Modal.prototype.isClosed = function() {
 
 const modal = new Modal();
 
+//Displays the game's status
 const Game = function() {
     this.score = document.querySelector('.score span');
     this.score.textContent = `Your score: ${modal.counter}`;
 }
 
 const game = new Game();
+
+//start the game
+const Start = function() {
+    this.e = document.querySelector('.start > h3');
+    this.e.classList.toggle('started');
+    this.e.addEventListener('click', () => {
+        allEnemies.push(enemy1, enemy2, enemy3, enemy4, enemy5, enemy6);
+        allItems.push(item1, item2, item3, item4, item5, item6);
+    });
+}
+
+Start.prototype.isStarted = function() {
+
+}
+
+const start = new Start();
