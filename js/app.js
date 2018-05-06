@@ -37,26 +37,13 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    enemy1.x += enemy1.speed * dt;
-
-    if (enemy1.x > ctx.canvas.width) {
-        enemy1.x = getRandom(-ctx.canvas.width, -101);
-        enemy1.speed = getRandom(25, 65);
-    }
-
-    enemy3.x += enemy3.speed * dt;
-
-    if (enemy3.x > ctx.canvas.width) {
-        enemy3.x = getRandom(-ctx.canvas.width, -101);
-        enemy3.speed = getRandom(25, 65);
-    }
-
-    enemy5.x += enemy5.speed * dt;
-
-    if (enemy5.x > ctx.canvas.width) {
-        enemy5.x = getRandom(-ctx.canvas.width, -101);
-        enemy5.speed = getRandom(25, 65);
-    }
+    allEnemies.forEach(enemy => {
+        enemy.x += enemy.speed * dt;
+        if (enemy.x > ctx.canvas.width) {
+            enemy.x = getRandom(-ctx.canvas.width, -player.xMove);
+            enemy.speed = getRandom(35, 100);
+        }
+    });
 };
 
 // Draw the enemy on the screen, required method for game
