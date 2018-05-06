@@ -77,6 +77,7 @@ Enemy.prototype.checkCollisions = function() {
         // Score resets
         modal.counter = 0;
         modal.score.textContent = `Your score: ${modal.counter}`;
+        game.score.textContent = modal.score.textContent;
     }
 
     if (enemy3.x + 50.5 > player.x && player.x + 50.5 > enemy3.x && player.y < enemy3.y + 40 && player.y + 40 > enemy3.y) {
@@ -90,6 +91,7 @@ Enemy.prototype.checkCollisions = function() {
         // Score resets
         modal.counter = 0;
         modal.score.textContent = `Your score: ${modal.counter}`;
+        game.score.textContent = modal.score.textContent;
     }
 
     if (enemy5.x + 50.5 > player.x && player.x + 50.5 > enemy5.x && player.y < enemy5.y + 40 && player.y + 40 > enemy5.y) {
@@ -103,6 +105,7 @@ Enemy.prototype.checkCollisions = function() {
         // Score resets
         modal.counter = 0;
         modal.score.textContent = `Your score: ${modal.counter}`;
+        game.score.textContent = modal.score.textContent;
     }
 };
 
@@ -217,6 +220,7 @@ Item.prototype.checkCollisions = function() {
         this.x = getRandom(-ctx.canvas.width, -player.xMove);
         this.y = getRandom(-ctx.canvas.height, -player.yMove);
         modal.score.textContent = `Your score: ${modal.counter += this.cost}`;
+        game.score.textContent = modal.score.textContent;
     }
 
     // prevent 2 items occupy the same cell in same time
@@ -322,19 +326,29 @@ document.addEventListener('keyup', function(e) {
 });
 
 const Modal = function() {
-this.counter = 0;
-this.score = document.querySelector('.modalScore');
-this.score.textContent = `Your score: ${this.counter}`;
-this.e1 = document.querySelector('.modal');
-this.e2 = document.querySelector('.modal-overlay');
-this.close = document.querySelector('#close');
-this.close.addEventListener('click', function() {
+
+    this.counter = 0;
+    this.score = document.querySelector('.modalScore');
+    this.score.textContent = `Your score: ${this.counter}`;
+    this.header = document.querySelector('.modal-content h1');
+    this.e1 = document.querySelector('.modal');
+    this.e2 = document.querySelector('.modal-overlay');
+    this.close = document.querySelector('#close');
+    this.close.addEventListener('click', function() {
         modal.e1.style.display = 'none';
         modal.e2.style.display = 'none';
         // if modal is closed score resets
         modal.counter = 0;
         modal.score.textContent = `Your score: ${modal.counter}`;
+        game.score.textContent = modal.score.textContent;
     });
 };
 
 const modal = new Modal();
+
+const Game = function() {
+    this.score = document.querySelector('.score span');
+    this.score.textContent = `Your score: ${modal.counter}`;
+}
+
+const game = new Game();
