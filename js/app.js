@@ -326,6 +326,7 @@ Modal.prototype.isClosed = function() {
     this.body.classList.add('closed');
     this.e1.style.display = 'none';
     this.e2.style.display = 'none';
+    start.isStopped();
 }
 
 const modal = new Modal();
@@ -355,11 +356,11 @@ Start.prototype.isStarted = function() {
     modal.counter = 0;
     this.e = document.querySelector('.started');
     this.e.addEventListener('click', () => {
-        this.isStoped();
+        this.isStopped();
     });
 }
 
-Start.prototype.isStoped = function() {
+Start.prototype.isStopped = function() {
     this.e.classList.add('stopped');
     this.e.classList.remove('started');
     this.e.textContent = 'Start';
