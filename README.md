@@ -29,15 +29,10 @@ No installation required. You need only web browser.
 ##### Cost of Items
 
 ![](images/Gem Blue.png) - 200 points
-
 ![](images/Gem Green.png) - 300 points
-
 ![](images/Gem Orange.png) - 500 points
-
 ![](images/Heart.png) - 700 points
-
 ![](images/Key.png) - 800 points
-
 ![](images/Star.png) - 1000 points
 
 ## Game's screenshots
