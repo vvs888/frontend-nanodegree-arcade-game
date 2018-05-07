@@ -30,23 +30,23 @@ No installation required. You need only web browser.
 
 ##### Game's desk
 
-![screenshot1](img/1.jpg)
+![screenshot1](images/1.jpg)
 
 ##### Game is started
 
-![screenshot2](img/2.jpg)
+![screenshot2](images/2.jpg)
 
 ##### Scores are earned
 
-![screenshot3](img/3.jpg)
+![screenshot3](images/3.jpg)
 
 ##### You won!
 
-![screenshot4](img/4.jpg)
+![screenshot4](images/4.jpg)
 
 ##### You loose
 
-![screenshot4](img/5.jpg)
+![screenshot5](images/5.jpg)
 
 ## Authors
 
