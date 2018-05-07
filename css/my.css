@@ -47,6 +47,15 @@ body {
     animation-duration: 0.4s
 }
 
+.modal-content h1 {
+	text-transform: uppercase;
+}
+
+.modal-content p {
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
 /* Add Animation */
 @-webkit-keyframes animatetop {
     from {top:-300px; opacity:0}
