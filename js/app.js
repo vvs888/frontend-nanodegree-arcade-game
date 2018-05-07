@@ -277,7 +277,7 @@ item3.sprite = 'images/Gem Orange.png';
 const item4 = new Item(700);
 item4.sprite = 'images/Heart.png';
 
-const item5 = new Item(100);
+const item5 = new Item(800);
 item5.sprite = 'images/Key.png';
 
 const item6 = new Item(1000);
