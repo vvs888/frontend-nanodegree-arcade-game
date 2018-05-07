@@ -19,7 +19,7 @@ No installation required. You need only web browser.
 
 ##### The rules are simple:
 
-* The game starts by clicking on first card
+* The game starts by clicking Start button
 * Choose your hero
 * You can move a hero by pressing keyboard's buttons (up, right, down, left)
 * To win the game you need to reach water avoiding collision with enemies(beetles)
@@ -28,21 +28,25 @@ No installation required. You need only web browser.
 
 ## Game's screenshots
 
-##### Start of the game
+##### Game's desk
 
 ![screenshot1](img/1.jpg)
 
-##### Two cards are matched
+##### Game is started
 
 ![screenshot2](img/2.jpg)
 
-##### Game over
+##### Scores are earned
 
 ![screenshot3](img/3.jpg)
 
-##### All cards are opened
+##### You won!
 
 ![screenshot4](img/4.jpg)
+
+##### You loose
+
+![screenshot4](img/5.jpg)
 
 ## Authors
 
