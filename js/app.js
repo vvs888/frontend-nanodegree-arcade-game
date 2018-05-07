@@ -138,17 +138,17 @@ Player.prototype.render = function() {
 }
 
 Player.prototype.handleInput = function(evt) {
-    /* if modal is opened player cannot move */
-    if (evt === 'up' && modal.body.classList.contains('closed')) {
+    /* if modal is opened player cannot move; if game is stopped player cannot move */
+    if (evt === 'up' && modal.body.classList.contains('closed') && allItems.length > 0) {
         this.y -= this.yMove;
 
-    } else if (evt === 'right' && modal.body.classList.contains('closed')) {
+    } else if (evt === 'right' && modal.body.classList.contains('closed') && allItems.length > 0) {
         this.x += this.xMove;
 
-    } else if (evt === 'down' && modal.body.classList.contains('closed')) {
+    } else if (evt === 'down' && modal.body.classList.contains('closed') && allItems.length > 0) {
         this.y += this.yMove;
 
-    } else if (evt === 'left' && modal.body.classList.contains('closed')) {
+    } else if (evt === 'left' && modal.body.classList.contains('closed') && allItems.length > 0) {
         this.x -= this.xMove;
     }
 }
@@ -350,8 +350,8 @@ Start.prototype.isStarted = function() {
     this.e.classList.remove('stopped');
     this.e.classList.add('started');
     this.e.textContent = 'Stop';
-    allEnemies.push(enemy1, enemy2, enemy3, enemy4, enemy5, enemy6);
-    allItems.push(item1, item2, item3, item4, item5, item6);
+    allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5, enemy6];
+    allItems = [item1, item2, item3, item4, item5, item6];
     modal.counter = 0;
     this.e = document.querySelector('.started');
     this.e.addEventListener('click', () => {
