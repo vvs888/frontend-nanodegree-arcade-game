@@ -74,10 +74,23 @@ body {
 	cursor: pointer;
 }
 
+.button {
+	margin: 10px;
+	width: 4em;
+	height: 3em;
+	border-radius: 5px;
+	color: white;
+	font-weight: bold;
+	font-size: 120%;
+}
+
 #close {
-	width: 10%;
-	margin: 10px auto 0;
-	display: block;
+	background: red;
+}
+
+#yes {
+	background: green;
+
 }
 
 .start {
