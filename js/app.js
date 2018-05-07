@@ -103,6 +103,8 @@ Player.prototype.selectHero = function() {
 Player.prototype.update = function() {
 
     if (this.y < 0) {
+        // if water reached player earnes 500 points
+        modal.score.textContent = `Your score: ${modal.counter + 500}`
         modal.isOpened();
 
         modal.header.style.color = 'green';
@@ -339,7 +341,7 @@ const Game = function() {
 
 const game = new Game();
 
-//start the game
+// start/stop  button
 const Start = function() {
     this.e = document.querySelector('.stopped');
     this.e.addEventListener('click', () => {
