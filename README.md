@@ -28,15 +28,15 @@ No installation required. You need only web browser.
 
 ##### Cost of Items
 
-![](images/'Gem Blue'.png)
+![](images/GemBlue.png)
 
 200 points
 
-![](images/'Gem Green'.png)
+![](images/GemGreen.png)
 
 300 points
 
-![](images/'Gem Orange'.png)
+![](images/GemOrange.png)
 
 500 points
 
