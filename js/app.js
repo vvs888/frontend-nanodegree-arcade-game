@@ -69,7 +69,9 @@ Enemy.prototype.checkCollisions = function() {
             // Score resets
             modal.isOpened();
             modal.header.style.color = 'red';
-            modal.header.textContent = 'You Loose! Try again';
+            modal.paragraph.style.color = 'red';
+            modal.header.textContent = 'You Loose!';
+            modal.paragraph.textContent = 'Wanna try again?';
             modal.counter = 0;
             modal.score.textContent = `Your score: ${modal.counter}`;
             game.score.textContent = modal.score.textContent;
@@ -106,9 +108,10 @@ Player.prototype.update = function() {
         // if water reached player earnes 500 points
         modal.score.textContent = `Your score: ${modal.counter + 500}`
         modal.isOpened();
-
         modal.header.style.color = 'green';
+        modal.paragraph.style.color = 'green';
         modal.header.textContent = 'You Win!';
+        modal.paragraph.textContent = 'Wanna play again?';
 
         setTimeout(function() {
             // if player reaches water, player returns to initial position
@@ -306,6 +309,7 @@ const Modal = function() {
     this.score = document.querySelector('.modalScore');
     this.score.textContent = `Your score: ${this.counter}`;
     this.header = document.querySelector('.modal-content h1');
+    this.paragraph = document.querySelector('.modal-content p');
     this.e1 = document.querySelector('.modal');
     this.e2 = document.querySelector('.modal-overlay');
     // No Button
