@@ -308,13 +308,20 @@ const Modal = function() {
     this.header = document.querySelector('.modal-content h1');
     this.e1 = document.querySelector('.modal');
     this.e2 = document.querySelector('.modal-overlay');
+    // No Button
     this.close = document.querySelector('#close');
-    this.close.addEventListener('click', function() {
+    this.close.addEventListener('click', () => {
         modal.isClosed();
         // if modal is closed score resets
         modal.counter = 0;
         modal.score.textContent = `Your score: ${modal.counter}`;
         game.score.textContent = modal.score.textContent;
+    });
+    // Yes Button
+    this.yes = document.querySelector('#yes');
+    this.yes.addEventListener('click', () => {
+        modal.isClosed();
+        start.isStarted();
     });
 };
 
