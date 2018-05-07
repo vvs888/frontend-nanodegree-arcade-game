@@ -26,6 +26,20 @@ No installation required. You need only web browser.
 * There are valuable items on the game's desk. You can collect them earning points to improve the score of the game
 * If you collided with an enemy the game and the game's score will reset, your hero will return to initial position
 
+##### Cost of Items
+
+![](images/Gem Blue.png) - 200 points
+
+![](images/Gem Green.png) - 300 points
+
+![](images/Gem Orange.png) - 500 points
+
+![](images/Heart.png) - 700 points
+
+![](images/Key.png) - 800 points
+
+![](images/Star.png) - 1000 points
+
 ## Game's screenshots
 
 ##### Game's desk
