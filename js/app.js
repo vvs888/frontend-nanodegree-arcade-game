@@ -47,9 +47,7 @@ class Enemy {
         };
 
         // Draw the enemy on the screen, required method for game
-        this.render = () => {
-            ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-        };
+        this.render = () => ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 
         this.checkCollisions = () => {
 
