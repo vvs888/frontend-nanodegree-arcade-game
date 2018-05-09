@@ -19,64 +19,64 @@ function getRandom(min, max) {
 }
 
 // Enemies our player must avoid
-const Enemy = function(y) {
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
+class Enemy {
+    constructor(y) {
+        // Variables applied to each of our instances go here,
+        // we've provided one for you to get started
 
-    // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
-    this.sprite = 'images/enemy-bug.png';
-    this.x = getRandom(-ctx.canvas.width, ctx.canvas.width);
-    this.y = y;
-    this.speed = getRandom(35, 100);
-};
+        // The image/sprite for our enemies, this uses
+        // a helper we've provided to easily load images
+        this.sprite = 'images/enemy-bug.png';
+        this.x = getRandom(-ctx.canvas.width, ctx.canvas.width);
+        this.y = y;
+        this.speed = getRandom(35, 100);
 
-// Update the enemy's position, required method for game
-// Parameter: dt, a time delta between ticks
-Enemy.prototype.update = function(dt) {
-    // You should multiply any movement by the dt parameter
-    // which will ensure the game runs at the same speed for
-    // all computers.
-    allEnemies.forEach(enemy => {
-        enemy.x += enemy.speed * dt;
-        if (enemy.x > ctx.canvas.width) {
-            enemy.x = getRandom(-ctx.canvas.width, -player.xMove);
-            enemy.speed = getRandom(35, 100);
-        }
-    });
-};
-
-// Draw the enemy on the screen, required method for game
-Enemy.prototype.render = function() {
-
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-};
-
-Enemy.prototype.checkCollisions = function() {
-
-    allEnemies.forEach(enemy => {
-        if (enemy.x + 50.5 > player.x && player.x + 50.5 > enemy.x && player.y < enemy.y + 40 && player.y + 40 > enemy.y) {
-            // player returns to initial position
-            player.y = player.initY;
-            player.x = player.initX;
-
-            // all items reset to random positions
-            allItems.forEach(item => {
-                item.x = item.randomX();
-                item.y = item.randomY();
+        // Update the enemy's position, required method for game
+        // Parameter: dt, a time delta between ticks
+        this.update = (dt) => {
+            // You should multiply any movement by the dt parameter
+            // which will ensure the game runs at the same speed for
+            // all computers.
+            allEnemies.forEach(enemy => {
+                enemy.x += enemy.speed * dt;
+                if (enemy.x > ctx.canvas.width) {
+                    enemy.x = getRandom(-ctx.canvas.width, -player.xMove);
+                    enemy.speed = getRandom(35, 100);
+                }
             });
+        };
 
-            // Score resets
-            modal.isOpened();
-            modal.header.style.color = 'red';
-            modal.paragraph.style.color = 'red';
-            modal.header.textContent = 'You Lose!';
-            modal.paragraph.textContent = 'Wanna try again?';
-            modal.counter = 0;
-            modal.score.textContent = `Your score: ${modal.counter}`;
-            game.score.textContent = modal.score.textContent;
-        }
-    });
+        // Draw the enemy on the screen, required method for game
+        this.render = () => {
+            ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+        };
+
+        this.checkCollisions = () => {
+
+            allEnemies.forEach(enemy => {
+                if (enemy.x + 50.5 > player.x && player.x + 50.5 > enemy.x && player.y < enemy.y + 40 && player.y + 40 > enemy.y) {
+                    // player returns to initial position
+                    player.y = player.initY;
+                    player.x = player.initX;
+
+                    // all items reset to random positions
+                    allItems.forEach(item => {
+                        item.x = item.randomX();
+                        item.y = item.randomY();
+                    });
+                    // Score resets
+                    modal.isOpened();
+                    modal.header.style.color = 'red';
+                    modal.paragraph.style.color = 'red';
+                    modal.header.textContent = 'You Lose!';
+                    modal.paragraph.textContent = 'Wanna try again?';
+                    modal.counter = 0;
+                    modal.score.textContent = `Your score: ${modal.counter}`;
+                    game.score.textContent = modal.score.textContent;
+                }
+            });
+        };
+    }
 };
 
 // Now write your own player class
