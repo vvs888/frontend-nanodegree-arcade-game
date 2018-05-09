@@ -301,44 +301,46 @@ document.addEventListener('keyup', function(e) {
 });
 
 // Modal window to display the Game's status
-const Modal = function() {
-    this.counter = 0;
-    this.body = document.querySelector('.modal');
-    this.score = document.querySelector('.modalScore');
-    this.score.textContent = `Your score: ${this.counter}`;
-    this.header = document.querySelector('.modal-content h1');
-    this.paragraph = document.querySelector('.modal-content p');
-    this.e1 = document.querySelector('.modal');
-    this.e2 = document.querySelector('.modal-overlay');
-    // No Button
-    this.close = document.querySelector('#close');
-    this.close.addEventListener('click', () => {
-        modal.isClosed();
-        // if modal is closed score resets
-        modal.counter = 0;
-        modal.score.textContent = `Your score: ${modal.counter}`;
-        game.score.textContent = modal.score.textContent;
-    });
-    // Yes Button
-    this.yes = document.querySelector('#yes');
-    this.yes.addEventListener('click', () => {
-        modal.isClosed();
-        start.isStarted();
-    });
+class Modal {
+    constructor() {
+        this.counter = 0;
+        this.body = document.querySelector('.modal');
+        this.score = document.querySelector('.modalScore');
+        this.score.textContent = `Your score: ${this.counter}`;
+        this.header = document.querySelector('.modal-content h1');
+        this.paragraph = document.querySelector('.modal-content p');
+        this.e1 = document.querySelector('.modal');
+        this.e2 = document.querySelector('.modal-overlay');
+        // No Button
+        this.close = document.querySelector('#close');
+        this.close.addEventListener('click', () => {
+            this.isClosed();
+            // if modal is closed score resets
+            this.counter = 0;
+            this.score.textContent = `Your score: ${modal.counter}`;
+            game.score.textContent = modal.score.textContent;
+        });
+        // Yes Button
+        this.yes = document.querySelector('#yes');
+        this.yes.addEventListener('click', () => {
+            this.isClosed();
+            start.isStarted();
+        });
+
+        this.isOpened = () => {
+            this.body.classList.remove('closed');
+            this.e1.style.display = 'block';
+            this.e2.style.display = 'block';
+        };
+
+        this.isClosed = () => {
+            this.body.classList.add('closed');
+            this.e1.style.display = 'none';
+            this.e2.style.display = 'none';
+            start.isStopped();
+        };
+    }
 };
-
-Modal.prototype.isOpened = function() {
-    this.body.classList.remove('closed');
-    this.e1.style.display = 'block';
-    this.e2.style.display = 'block';
-}
-
-Modal.prototype.isClosed = function() {
-    this.body.classList.add('closed');
-    this.e1.style.display = 'none';
-    this.e2.style.display = 'none';
-    start.isStopped();
-}
 
 const modal = new Modal();
 
