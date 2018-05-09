@@ -70,7 +70,7 @@ Enemy.prototype.checkCollisions = function() {
             modal.isOpened();
             modal.header.style.color = 'red';
             modal.paragraph.style.color = 'red';
-            modal.header.textContent = 'You Loose!';
+            modal.header.textContent = 'You Lose!';
             modal.paragraph.textContent = 'Wanna try again?';
             modal.counter = 0;
             modal.score.textContent = `Your score: ${modal.counter}`;
@@ -110,7 +110,7 @@ Player.prototype.update = function() {
         modal.isOpened();
         modal.header.style.color = 'green';
         modal.paragraph.style.color = 'green';
-        modal.header.textContent = 'You Win!';
+        modal.header.textContent = 'You Won!';
         modal.paragraph.textContent = 'Wanna play again?';
 
         setTimeout(function() {
