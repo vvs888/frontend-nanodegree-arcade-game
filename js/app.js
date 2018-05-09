@@ -158,91 +158,91 @@ class Player {
 }
 
 // Items to collect
-const Item = function(cost) {
-    this.cost = cost;
-    this.x = this.randomX();
-    this.y = this.randomY();
-}
+class Item {
+    constructor(cost) {
+        this.cost = cost;
 
-// Draw items
-Item.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
+        // Draw items
+        this.render = () => ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 
-//random x-position
-Item.prototype.randomX = function() {
-    let x = [];
-    for (i = 0; i < ctx.canvas.width; i+=101) {
-        x.push(i);
-    }
-    shuffle(x);
-    return Number(x[0]);
-}
-
-// random y-position
-Item.prototype.randomY = function() {
-    let y = [];
-    for(let j = ctx.canvas.height / 6 - 47; j <= ctx.canvas.height / 6 + 119; j+=83){
-        y.push(j);
-    }
-    shuffle(y);
-    return Number(y[0]);
-}
-
-Item.prototype.checkCollisions = function() {
-
-    if (this.x === player.x && this.y === player.y) {
-        this.x = getRandom(-ctx.canvas.width, -player.xMove);
-        this.y = getRandom(-ctx.canvas.height, -player.yMove);
-        modal.score.textContent = `Your score: ${modal.counter += this.cost}`;
-        game.score.textContent = modal.score.textContent;
-    }
-
-    // prevent 2 items occupy the same cell in same time
-    if (item1.x === item2.x && item1.y === item2.y ||
-        item1.x === item3.x && item1.y === item3.y ||
-        item1.x === item4.x && item1.y === item4.y ||
-        item1.x === item5.x && item1.y === item5.y ||
-        item1.x === item6.x && item1.y === item6.y) {
-        item1.x = this.randomX();
-        item1.y = this.randomY();
-    }
-
-    if (item2.x === item3.x && item2.y === item3.y ||
-        item2.x === item4.x && item2.y === item4.y ||
-        item2.x === item5.x && item2.y === item5.y ||
-        item2.x === item6.x && item2.y === item6.y) {
-        item2.x = this.randomX();
-        item2.y = this.randomY();
-    }
-
-    if (item3.x === item4.x && item3.y === item4.y ||
-        item3.x === item5.x && item3.y === item5.y ||
-        item3.x === item6.x && item3.y === item6.y) {
-        item3.x = this.randomX();
-        item3.y = this.randomY();
-    }
-
-    if (item4.x === item5.x && item4.y === item5.y ||
-        item4.x === item6.x && item4.y === item6.y) {
-        item4.x = this.randomX();
-        item4.y = this.randomY();
-    }
-
-    if (item5.x === item6.x && item5.y === item6.y) {
-        item5.x = this.randomX();
-        item5.y = this.randomY();
-    }
-
-    // if all items are collected and player reaches water all items return on desk in random order
-    allItems.forEach(item => {
-        if (item.x > -ctx.canvas.width && item.x < -player.xMove &&
-            item.y > -ctx.canvas.height && item.y < player.yMove &&
-            player.y < 0) {
-            item.x = item.randomX();
-            item.y = item.randomY();
+        //random x-position
+        this.randomX = () => {
+            let x = [];
+            for (let i = 0; i < ctx.canvas.width; i+=101) {
+                x.push(i);
+            }
+            shuffle(x);
+            return Number(x[0]);
         }
-    });
+
+        // random y-position
+        this.randomY = () => {
+            let y = [];
+            for(let j = ctx.canvas.height / 6 - 47; j <= ctx.canvas.height / 6 + 119; j+=83){
+                y.push(j);
+            }
+            shuffle(y);
+            return Number(y[0]);
+        }
+
+        this.x = this.randomX();
+        this.y = this.randomY();
+
+        this.checkCollisions = () => {
+            if (this.x === player.x && this.y === player.y) {
+                this.x = getRandom(-ctx.canvas.width, -player.xMove);
+                this.y = getRandom(-ctx.canvas.height, -player.yMove);
+                modal.score.textContent = `Your score: ${modal.counter += this.cost}`;
+                game.score.textContent = modal.score.textContent;
+            }
+
+            // prevent 2 items occupy the same cell in same time
+            if (item1.x === item2.x && item1.y === item2.y ||
+                item1.x === item3.x && item1.y === item3.y ||
+                item1.x === item4.x && item1.y === item4.y ||
+                item1.x === item5.x && item1.y === item5.y ||
+                item1.x === item6.x && item1.y === item6.y) {
+                item1.x = this.randomX();
+                item1.y = this.randomY();
+            }
+
+            if (item2.x === item3.x && item2.y === item3.y ||
+                item2.x === item4.x && item2.y === item4.y ||
+                item2.x === item5.x && item2.y === item5.y ||
+                item2.x === item6.x && item2.y === item6.y) {
+                item2.x = this.randomX();
+                item2.y = this.randomY();
+            }
+
+            if (item3.x === item4.x && item3.y === item4.y ||
+                item3.x === item5.x && item3.y === item5.y ||
+                item3.x === item6.x && item3.y === item6.y) {
+                item3.x = this.randomX();
+                item3.y = this.randomY();
+            }
+
+            if (item4.x === item5.x && item4.y === item5.y ||
+                item4.x === item6.x && item4.y === item6.y) {
+                item4.x = this.randomX();
+                item4.y = this.randomY();
+            }
+
+            if (item5.x === item6.x && item5.y === item6.y) {
+                item5.x = this.randomX();
+                item5.y = this.randomY();
+            }
+
+            // if all items are collected and player reaches water all items return on desk in random order
+            allItems.forEach(item => {
+                if (item.x > -ctx.canvas.width && item.x < -player.xMove &&
+                    item.y > -ctx.canvas.height && item.y < player.yMove &&
+                    player.y < 0) {
+                    item.x = item.randomX();
+                    item.y = item.randomY();
+                }
+            });
+        }
+    }
 }
 
 // Now instantiate your objects.
@@ -283,7 +283,6 @@ item5.sprite = 'images/Key.png';
 
 const item6 = new Item(1000);
 item6.sprite = 'images/Star.png';
-
 
 let allItems = [];
 
