@@ -82,79 +82,78 @@ class Enemy {
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
-const Player = function(x, y, xMove, yMove) {
+class Player {
+    constructor(x, y, xMove, yMove) {
 
-    this.sprite = 'images/char-boy.png';
-    this.x = x;
-    this.y = y;
-    this.xMove = xMove;
-    this.yMove = yMove;
-}
+        this.sprite = 'images/char-boy.png';
+        this.x = x;
+        this.y = y;
+        this.xMove = xMove;
+        this.yMove = yMove;
+        //Player can select a hero
+        this.selectHero = () => {
+            const players = document.querySelector('.characters');
+            players.addEventListener('click', function(evt) {
+                if (evt.target.nodeName.toLowerCase() === 'img' &&
+                    player.x === player.initX && player.y === player.initY /* preventing changing a hero after changing hero's initial position */) {
+                    player.sprite = evt.target.getAttribute('src');
+                }
+            });
+        };
 
-Player.prototype.selectHero = function() {
-    //Player can choose character
-    const players = document.querySelector('.characters');
-    players.addEventListener('click', function(evt) {
-        if (evt.target.nodeName.toLowerCase() === 'img' &&
-            player.x === player.initX && player.y === player.initY /* preventing changing a hero after changing hero's initial position */) {
-            player.sprite = evt.target.getAttribute('src');
-        }
-    });
-}
+       this.update = () => {
 
-Player.prototype.update = function() {
+        if (this.y < 0) {
+            // if water reached player earnes 500 points
+            modal.score.textContent = `Your score: ${modal.counter + 500}`
+            modal.isOpened();
+            modal.header.style.color = 'green';
+            modal.paragraph.style.color = 'green';
+            modal.header.textContent = 'You Won!';
+            modal.paragraph.textContent = 'Wanna play again?';
 
-    if (this.y < 0) {
-        // if water reached player earnes 500 points
-        modal.score.textContent = `Your score: ${modal.counter + 500}`
-        modal.isOpened();
-        modal.header.style.color = 'green';
-        modal.paragraph.style.color = 'green';
-        modal.header.textContent = 'You Won!';
-        modal.paragraph.textContent = 'Wanna play again?';
+            setTimeout(function() {
+                // if player reaches water, player returns to initial position
+                player.x = player.initX;
+                player.y = player.initY;
+                }, 500);
+            }
+            // preventing the player from moving outside the screen
+            if (this.y < 0 - this.yMove) {
+                this.y += this.yMove;
+            }
 
-        setTimeout(function() {
-            // if player reaches water, player returns to initial position
-            player.x = player.initX;
-            player.y = player.initY;
-            }, 500);
-        }
-        // preventing the player from moving outside the screen
-        if (this.y < 0 - this.yMove) {
-            this.y += this.yMove;
-        }
+            if (this.x === ctx.canvas.width) {
+                this.x -= this.xMove;
+            }
 
-        if (this.x === ctx.canvas.width) {
-            this.x -= this.xMove;
-        }
+            if (this.y > this.initY) {
+                this.y = this.initY;
+            }
 
-        if (this.y > this.initY) {
-            this.y = this.initY;
-        }
+            if (this.x < 0) {
+                this.x = 0;
+            }
+        };
 
-        if (this.x < 0) {
-            this.x = 0;
-        }
-}
+        // Draw the player
+        this.render = () => ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 
-// Draw the player
-Player.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
+        this.handleInput = (evt) => {
+            /* if modal is opened player cannot move; if game is stopped player cannot move */
+            if (evt === 'up' && modal.body.classList.contains('closed') && allItems.length > 0) {
+                this.y -= this.yMove;
 
-Player.prototype.handleInput = function(evt) {
-    /* if modal is opened player cannot move; if game is stopped player cannot move */
-    if (evt === 'up' && modal.body.classList.contains('closed') && allItems.length > 0) {
-        this.y -= this.yMove;
+            } else if (evt === 'right' && modal.body.classList.contains('closed') && allItems.length > 0) {
+                this.x += this.xMove;
 
-    } else if (evt === 'right' && modal.body.classList.contains('closed') && allItems.length > 0) {
-        this.x += this.xMove;
+            } else if (evt === 'down' && modal.body.classList.contains('closed') && allItems.length > 0) {
+                this.y += this.yMove;
 
-    } else if (evt === 'down' && modal.body.classList.contains('closed') && allItems.length > 0) {
-        this.y += this.yMove;
-
-    } else if (evt === 'left' && modal.body.classList.contains('closed') && allItems.length > 0) {
-        this.x -= this.xMove;
+            } else if (evt === 'left' && modal.body.classList.contains('closed') && allItems.length > 0) {
+                this.x -= this.xMove;
+            }
+        };
     }
 }
 
