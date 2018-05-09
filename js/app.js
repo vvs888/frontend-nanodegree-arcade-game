@@ -345,9 +345,11 @@ class Modal {
 const modal = new Modal();
 
 //Displays the game's status
-const Game = function() {
-    this.score = document.querySelector('.score span');
-    this.score.textContent = `Your score: ${modal.counter}`;
+class Game {
+    constructor() {
+        this.score = document.querySelector('.score span');
+        this.score.textContent = `Your score: ${modal.counter}`;
+    }
 }
 
 const game = new Game();
