@@ -88,6 +88,8 @@ class Player {
         this.y = y;
         this.xMove = xMove;
         this.yMove = yMove;
+        this.initX = this.x;
+        this.initY = this.y;
         //Player can select a hero
         this.selectHero = () => {
             const players = document.querySelector('.characters');
@@ -262,8 +264,7 @@ let allEnemies = [];
 
 // Place the player object in a variable called player
 const player = new Player(ctx.canvas.width / 2 - 50.5, ctx.canvas.height / 2 + 83, 101, 83);
-Player.prototype.initX = player.x;
-Player.prototype.initY = player.y;
+
 
 const item1 = new Item(200);
 item1.sprite = 'images/Gem Blue.png';
